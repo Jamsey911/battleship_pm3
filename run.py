@@ -10,7 +10,7 @@ def check_ok(boat, taken):
         elif num < 0 or num > 99:
             boat = [-1]
             break
-        elif num % 9 == 0 and i < len(boat) - 1:
+        elif num % 10 == 9 and i < len(boat) - 1:
             if boat[i+1] % 10 == 0:
                 boat = [-1]
                 break
@@ -57,7 +57,7 @@ def create_boats():
     return ships, taken
 
 
-def show_board(taken):
+def show_board_c(taken):
     print("          Battleships")
     print("     A  B  C  D  E  F  G  H  I  J")
 
@@ -67,14 +67,14 @@ def show_board(taken):
         for y in range(10):
             ch = " _ "
             if place in taken:
-                ch = " x "
+                ch = " o "
             row = row + ch
             place = place + 1
         print(x, " ", row)
 
 
-boats, taken = create_boats() 
-show_board(taken) 
+boats, taken = create_boats()
+show_board_c(taken)
 
 
 # def get_shot(guesses):
@@ -123,7 +123,7 @@ show_board(taken)
 #             print("You Hit")
 #         else:
 #             sink.append(shot)
-#             print("You sunk a ship")   
+#             print("You sunk a ship")
 #     elif shot in boat2:
 #         boat2.remove(shot)
 #         if len(boat2) > 0:
@@ -158,7 +158,7 @@ show_board(taken)
 # for i in range(10):
 #     guesses = hit + miss + sink
 #     shot = get_shot(guesses)
-#     boat1, boat2, boat3, hit, miss, sink = check_shot(shot, boat1, boat2, 
+#     boat1, boat2, boat3, hit, miss, sink = check_shot(shot, boat1, boat2,
 #                                                       boat3, hit, miss, sink)
 #     show_board(hit, miss, sink)
 
