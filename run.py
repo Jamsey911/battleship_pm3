@@ -25,23 +25,25 @@ def check_ok(boat, taken):
 
 
 def get_ship(long, taken):
-
     ok = True
     while ok:
-        ship = []
-        # ask the user to enter numbers
-        print("enter your ship of length ", long)
-        for i in range(long):
-            boat_num = input("please enter a number")
-            ship.append(int(boat_num))
-        # check that ship
-        ship = check_ok(ship, taken)
-        if ship[0] != -1:
-            taken = taken + ship
-            break
+        try:
+            ship = []
+            # ask the user to enter numbers
+            print("enter your ship of length:  ", long)
+            for i in range(long):
+                boat_num = input("please enter a number: ")
+                ship.append(int(boat_num))
+            # check that ship
+            ship = check_ok(ship, taken)
+            if ship[0] != -1:
+                taken = taken + ship
+                break
+        except ValueError:
+            print("Please, enter a valid integer")
+            continue
         else:
             print("error - please try again")
-
     return ship, taken
 
 
@@ -214,7 +216,7 @@ def get_shot(guesses):
     ok = "n"
     while ok == "n":
         try:
-            shot = input("please enter your guess")
+            shot = input("please enter your guess:")
             shot = int(shot)
             if shot < 0 or shot > 99:
                 print("incorrect number, please try again")
@@ -223,7 +225,7 @@ def get_shot(guesses):
             else:
                 ok = "y"
                 break
-        except Exception():
+        except ():
             print("incorrect entry - please enter again")
 
     return shot
