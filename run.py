@@ -40,7 +40,7 @@ def get_ship(long, taken):
                 taken = taken + ship
                 break
         except ValueError:
-            print("Please, enter a valid integer")
+            print("Please, enter a number between 0 and 99")
             continue
         else:
             print("error - please try again")
@@ -133,7 +133,7 @@ def get_shot_comp(guesses, tactics):
 
 
 def show_board(hit, miss, comp):
-    print("            battleships    ")
+    print("            C_battleships    ")
     print("     0  1  2  3  4  5  6  7  8  9")
 
     place = 0
@@ -146,7 +146,7 @@ def show_board(hit, miss, comp):
             elif place in hit:
                 ch = " o "
             elif place in comp:
-                ch = " O "
+                ch = " S "
             row = row + ch
             place = place + 1
 
@@ -225,10 +225,10 @@ def get_shot(guesses):
             else:
                 ok = "y"
                 break
-        except ():
+        except ValueError:
             print("incorrect entry - please enter again")
-
-    return shot
+            continue
+    return shot, guesses
 
 
 def check_if_empty_2(list_of_lists):
@@ -251,7 +251,8 @@ guesses2 = []
 missed2 = 0
 tactics2 = []
 
-battleships = [5, 4, 3, 3, 2, 2]
+# battleships = [5, 4, 3, 3, 2, 2]
+battleships = [1]
 # game amount of ships
 # computer creates a board for player 1
 ships1, taken1 = create_boats(taken1, battleships)
@@ -260,7 +261,7 @@ ships2, taken2 = create_ships(taken2, battleships)
 show_board_c(taken2)
 
 # loop
-for i in range(80):
+for i in range(100):
     # player shoots
     guesses1 = hit1 + miss1 + comp1
     shot1 = get_shot(guesses1)
